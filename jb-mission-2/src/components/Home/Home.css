@@ -1,0 +1,12 @@
+.home-page {
+  padding: 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+}
+
+.home-page p {
+  max-width: 42rem;
+  margin-top: 12px;
+  line-height: 1.65;
+}
