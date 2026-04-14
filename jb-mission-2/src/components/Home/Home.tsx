@@ -9,12 +9,12 @@ import { getData, saveToLocalStorage } from "../../utils/localStorage";
 
 function Home() {
   const [Citys, setCitys] = useState<City[]>([]);
-  const [isLoading, setIsloading] = useState<boolean>(false);
+
   const [weather, setWeather] = useState<Weather | "">();
 
   async function getWeather(event: ChangeEvent<HTMLSelectElement>) {
     if (!event.target.value) return;
-    setIsloading(true);
+
     try {
       const weatherData = await weatherService.getWeather(event.target.value);
 
@@ -26,11 +26,13 @@ function Home() {
       saveToLocalStorage(weatherObj);
     } catch (e) {
       alert(e);
-    } finally {
-      setIsloading(false);
     }
   }
   useEffect(() => {
+    const history = getData();
+    if (history && history.length > 0) {
+      setWeather(history[0]);
+    }
     (async () => {
       try {
         const response = await axios.get(
